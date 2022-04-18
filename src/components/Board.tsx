@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { generateGameBoard } from './../utils';
 import Tile from './Tile';
 import { ITileData } from './../model';
+import { GRID_SIZE, CELL_GAP, CELL_SIZE } from '../constants';
 
 const ships: any = {
     carrier: { size: 5, count: 1 },
@@ -10,6 +11,12 @@ const ships: any = {
     submarine: { size: 3, count: 1 },
     destroyer: { size: 2, count: 1 },
 };
+
+const boardVariablesStyle = {
+    '--grid-size': GRID_SIZE,
+    '--cell-size': CELL_SIZE + 'vmin',
+    '--cell-gap': CELL_GAP + 'vmin',
+} as React.CSSProperties;
 
 interface IBoardProps {
     setGameLog: (gameLog: string) => void;
@@ -76,7 +83,7 @@ export default function Board({ setGameLog }: IBoardProps) {
     }
 
     return (
-        <div className={`Board ${cheater ? 'Cheater' : ''}`}>
+        <div className={`Board ${cheater ? 'Cheater' : ''}`} style={boardVariablesStyle}>
             {gameBoard.map((row, rowIndex) => {
                 return row.map((tileData, columnIndex) => {
                     return (

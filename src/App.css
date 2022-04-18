@@ -1,9 +1,6 @@
 .App {
     --primary-color: #3498db;
     --background-color: #02040d;
-    --grid-size: 10;
-    --cell-size: 7vmin;
-    --cell-gap: 0.5vmin;
 
     height: 100vh;
     overflow: hidden;

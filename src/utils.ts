@@ -1,17 +1,15 @@
 import { IBoardData, IGameShips, SHIP_TYPE } from './model';
-
-export const ROWS = 10;
-export const COLS = 10;
+import { GRID_SIZE } from './constants';
 
 const generateEmptyBoard = (): IBoardData => {
     return Array.from(
         {
-            length: ROWS,
+            length: GRID_SIZE,
         },
         () =>
             Array.from(
                 {
-                    length: COLS,
+                    length: GRID_SIZE,
                 },
                 () => ({
                     ship: null,
@@ -34,8 +32,8 @@ const placeShips = (gameShips: IGameShips, board: IBoardData) => {
             const direction = getRandom(2);
             let shipTiles = [];
             if (direction === 0) {
-                const startX = getRandom(COLS - size);
-                const y = getRandom(ROWS);
+                const startX = getRandom(GRID_SIZE - size);
+                const y = getRandom(GRID_SIZE);
                 for (let i = startX; i < startX + size; i++) {
                     if (board[y][i].ship) {
                         shipTiles = [];
@@ -44,8 +42,8 @@ const placeShips = (gameShips: IGameShips, board: IBoardData) => {
                     shipTiles.push([y, i]);
                 }
             } else {
-                const x = getRandom(COLS);
-                const startY = getRandom(ROWS - size);
+                const x = getRandom(GRID_SIZE);
+                const startY = getRandom(GRID_SIZE - size);
                 for (let i = startY; i < startY + size; i++) {
                     if (board[i][x].ship) {
                         shipTiles = [];
